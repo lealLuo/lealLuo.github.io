@@ -1,0 +1,270 @@
+<!-- This page show you more complicted when you handle with video
+ * ready to javascript programming
+ * And this is for changing style of video
+ * Here only one effect will work(belong to control)
+ * version: 0.5
+ * When you push the play button, the button will change background image, it seems like "push"
+ * At the same time , to fit the logic, play button and pause button will not be pushed at the same time
+ * But it just show the picture and style, here video is controlled by adding javascript code
+ * But also just 2 button works (play and pause)
+ * Channel choose button now woks, and if you first push pause then channel, the pause button will release
+ * Debug Tips: please always remember == not = when judge the equality of the value
+ * video special effect button, but only button picture_change works, the effect still doesn't change.
+ * New: Time to write image_process function!! (Or even you see, video process function!)
+ * 		Canvas will be used at the same time to process the picture(canvas will be added at HTML part)
+ *		New global var is needed
+ * time: 2017.5.26
+ * by: leal
+ -->
+ 
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Starring You Video Booth</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="videobooth.css">
+	<script>
+			/* create a javascript object to hold videos */
+		var videos = {
+		video1:"video/demovideo1", 
+		video2:"video/demovideo2"
+		}; 
+		
+		var effectFunction = null;
+		
+		/* 
+		 * When page load finishes, function will be called 
+		 * Control option in CSS #div_control will be seeked
+		 */
+		window.onload = function() {				
+			var video = document.getElementById("video");
+			video.src = videos["video1"] + ".mp4";
+			video.load();
+			video.addEventListener("play", processFrame, false); // when video begins, process begins
+			
+			
+			var controlLinks = document.querySelectorAll("a.control");  // find controls from CSS(similar to findElementById in html)
+			for (var i = 0; i < controlLinks.length;i++) {
+				controlLinks[i].onclick = handleControl;
+			}
+			
+			var videoLinks = document.querySelectorAll("a.videoSelection"); // element in Links is area on the screen
+			for (var i = 0; i < videoLinks.length;i++) {
+				videoLinks[i].onclick = setVideo;	// set area to function
+			}
+			
+			var effectLinks = document.querySelectorAll("a.effect");
+			for (var i = 0; i < effectLinks.length;i++) {
+				effectLinks[i].onclick = setEffect;	// set area to function
+			}
+		}
+		
+		function handleControl(e) {
+			var id = e.target.getAttribute("id");
+			var video = document.getElementById("video");
+			
+			
+			if (id =="play") {
+				pushUnpushButtons("play", ["pause"]);							
+				if(video.ended) {
+					video.load();
+					} 				
+				video.play();				
+			} else if (id == "pause") {
+				pushUnpushButtons("pause", ["play"]);
+				video.pause();
+			}
+		}
+		
+		/*
+		 * called by: handleControl(e) when extern exception happen
+		 * example: pushUnpushButtons("play", ["pause"]);
+		 */
+		function pushUnpushButtons(idToPush, idArrayToUnpush) {
+			/* If button pushed, image will be replaced by push button*/
+			if(idToPush != "") {  // if something happen and id was caught, here true
+				var anchor = document.getElementById(idToPush);  // anchor element for operate,here  get(id=play) in html
+				var theClass =  anchor.getAttribute("class");  // grab the class of that id (effects/control...),here class is control
+				if (!theClass.indexOf("selected") >= 0) { // string.indexOf(string) will return -1 if string is not found 
+					theClass = theClass + " selected";				
+				anchor.setAttribute("class", theClass);  // make anchor is selected for other using
+				var newImage = "url(images/" + idToPush + "pressed.png)"; //  url(images/playpressed.png), deal with string here
+				anchor.style.backgroundImage = newImage;
+				
+			/* check pause/play list , and release the other button 
+			 * Play and Pause will not be pushed at the same time
+			 */
+			for (var i = 0; i < idArrayToUnpush.length; i++) {
+				anchor = document.getElementById(idArrayToUnpush[i]);
+				theClass = anchor.getAttribute("class");
+				if (theClass.indexOf("selected") >= 0) { // if the option is selected
+					theClass = theClass.replace("selected", "");
+					anchor.setAttribute("class", theClass);
+					anchor.style.backgroundImage = "";  // remove background image (pushed button)
+				}
+			}
+			
+				}
+			}
+		}
+		
+		/* Use two button to set video */
+		function setVideo(e) {
+			var id = e.target.getAttribute("id");
+			var video = document.getElementById("video");
+			
+			if(id == "video1") {  
+				pushUnpushButtons("video1", ["video2","pause"]);
+				
+			} else if (id == "video2") {
+				pushUnpushButtons("video2", ["video1","pause"]);					
+				
+			}
+			
+			video.src = videos[id] + ".mp4";
+			video.load();
+			video.play(); 
+			
+			//pushUnpushButtons("play", [pause]);
+		}
+		
+		/* Set the video special effect
+		 * function: reset a global variabale effectFunction so it can be used by image_process function
+		 * return: none
+		 */
+		function setEffect(e) {
+			var id = e.target.getAttribute("id");
+			var video = document.getElementById("video");
+			
+			if (id == "normal") {
+				pushUnpushButtons("normal",["western", "noir", "scifi"]);
+				effectFunction = null;	
+			}
+			
+			if (id == "western") {
+				pushUnpushButtons("western",["normal", "noir", "scifi"]);
+				effectFunction = "western";					
+			}
+			
+			if (id == "noir") {
+				pushUnpushButtons("noir",["western", "normal", "scifi"]);
+				effectFunction = "noir";					
+			}
+			
+			if (id == "scifi") {
+				pushUnpushButtons("scifi",["western", "noir", "normal"]);
+				effectFunction = "scifi";								
+			}
+			
+			
+		}
+		
+		function processFrame() {
+			var video = document.getElementById("video");
+			// consider pause or ended condition
+			var bufferCanvas = document.getElementById("buffer");
+			var displayCanvas = document.getElementById("display");
+			var buffer = bufferCanvas.getContext("2d");  // necessary for canvas drawing
+			var display = displayCanvas.getContext("2d");  
+			
+			/* begin your canvas drawing!
+			 * syntax: 
+			 * void ctx.drawImage(image, dx, dy, dWidth, dHeight);
+			 * @image: An element to draw into the context
+			 * @dx: The X coordinate in the destination canvas
+			 * @dy: The Y coordinate in the destination canvas 
+			 * @dWidth： The width to draw the image in the destination canvas
+			 * @dHeight： The Height to draw the image in the destination canvas
+			 */
+			
+			/* first grab a frame_image from video to canvas */
+			buffer.drawImage(video, 0, 0, bufferCanvas.width, bufferCanvas.height); 
+			/* Then set canvas to a variable so we can process it by pixel to pixel */
+			var frame = buffer.getImageData(0, 0, bufferCanvas.width, bufferCanvas.height);
+			
+			/* Process the buffer image we grab from canvas 
+			 * using API frame.data.length (see getImageData API in W3C)
+			 */
+			var length = frame.data.length / 4;  //(method includes RGBA values),real length is 1/4 of it
+			
+			
+			
+			/* set values by (Position of the pixel)
+			 * imageData Object
+			 * For every pixel in an ImageData object there are four pieces of information, the RGBA values:
+			 * R - The color red (from 0-255)
+			 * G - The color green (from 0-255)
+			 * B - The color blue (from 0-255)
+			 * A - The alpha channel (from 0-255; 0 is transparent and 255 is fully visible)
+			 * The color/alpha information is held in an array, and is stored in the data property of the ImageData object.
+			 */
+			for (var i = 0; i < length; i++) {
+				var r = frmae.data[i * 4 + 0];
+				var b = frmae.data[i * 4 + 1];
+				var g = frmae.data[i * 4 + 2];
+				if(effectFunction == "noir") {
+					noir(i, r, g, b, frame.data);								               
+				} else if (effectFunction == "scifi") {
+					scifi(i, r, g, b, frame.data);
+				}
+			}									
+			display.putImageData(frame, 0, 0);
+			setTimeout(processFrame, 0);
+		}
+		
+		/* noir effect function which obey mathmatical algorithm 
+		 * Or if you like, you can call it filter function
+		 * @pos: position of pixel
+		 * @ r,g,b : The RGB pixel values
+		 * @data: reference to the frame data array in the canvas
+		 */
+		function noir(pos, r, g, b, data) {
+			var brightness = (3*r + 4*g +b) >>> 3; // >>>  zero fill right shift(nosigned) 0101 >>> 2 = 0001
+			if(brightness < 0) brightness = 0;
+			data[pos * 4 + 0] = brightness;  // has the effect of setting grey scale value
+			data[pos * 4 + 1] = brightness;
+			data[pos * 4 + 2] = brightness;
+		}
+		
+		function scifi(pos, r, g, b, data) {
+			var offset = pos * 4;
+			data[offset] = Math.round(255 - r);
+			data[offset+1] = Math.round(255 - g);
+			data[offset+2] = Math.round(255 - b);			
+		}
+	</script>
+</head>
+
+<body>
+<div id="booth">
+	<div id="Console">
+		<div id="videoDiv"> <!-- controls and autopay can be deleted-->		
+			<video id = "video" width="720"  height="480"></video>
+			<canvas id="buffer" width="720" height="480"></canvas>
+			<canvas id="display" width="720" height="480"></canvas>
+		</div>
+		<div id="dashboard">
+			<div id="effects">
+				<a class = "effect" id="normal"></a>
+				<a class = "effect" id="western"></a>
+				<a class = "effect" id="noir"></a>
+				<a class = "effect" id="scifi"></a>
+			</div>
+			<div id="controls">
+				<a class = "control" id="play"></a>
+				<a class = "control" id="pause"></a>
+				<a class = "control" id="loop"></a>
+				<a class = "control" id="mute"></a>
+			</div>
+			<div id="videoSelection">
+				<a class = "videoSelection" id="video1"></a>
+				<a class = "videoSelection" id="video2"></a>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+
+</body>
+</html>
