@@ -199,9 +199,9 @@
 			 * The color/alpha information is held in an array, and is stored in the data property of the ImageData object.
 			 */
 			for (var i = 0; i < length; i++) {
-				var r = frmae.data[i * 4 + 0];
-				var b = frmae.data[i * 4 + 1];
-				var g = frmae.data[i * 4 + 2];
+				var r = frame.data[i * 4 + 0];
+				var b = frame.data[i * 4 + 1];
+				var g = frame.data[i * 4 + 2];
 				if(effectFunction == "noir") {
 					noir(i, r, g, b, frame.data);								               
 				} else if (effectFunction == "scifi") {
