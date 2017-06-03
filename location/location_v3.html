@@ -1,0 +1,67 @@
+<!--
+ * This is the framework of a location app
+ * New: add JS code to show some info
+ * But it doesn't work in liebao browser but work in Chorme
+ * This will show your position in a map by using google API
+ * But here map doesn't work anyway
+ * version: 0.3
+ * time: 2017.5.29
+ * by: leal
+ -->
+ 
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Where am I?</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="myLoc.css">
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGwSPRJS7VCXL6PJt0Z8uZo49D0aJvq5o"
+  type="text/javascript">
+		window.onload = getMyLocation;
+		
+		function getMyLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(displayLocation);	
+				
+			} else {
+				alert("Opps, no geolocation support");
+			}
+		}
+		
+		function displayLocation(position) {
+			var latitude = position.coords.latitude;
+			var longitude = position.coords.longitude;
+			
+			var div = document.getElementById("location");
+			div.innerHTML = "You are at Latitude: " + latitude + ", Longitude: " + longitude;
+			
+			showMap(position.coords);
+		}
+		
+		function showMap(coords) {
+			
+		
+			var googleLatAndLong = new google.maps.LatLng(latitude, longitude);
+		
+		
+			var mapOptions = {
+				zoom: 10,
+				center : googleLatAndLong,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			
+			var mapDiv = document.getElementById("map");
+			map = new google.maps.Map(mapDiv, mapOptions);
+		}
+	</script>
+
+</head>
+
+<body>
+	<div id="location">
+	  Your location comes here.
+	</div>
+	<div id="map">
+	</div>
+</body>
+</html>

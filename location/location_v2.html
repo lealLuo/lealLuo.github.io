@@ -1,0 +1,43 @@
+<!--
+ * This is the framework of a location app
+ * New: add JS code to show some info
+ * But it doesn't work in liebao browser but work in Chorme
+ * version: 0.2
+ * time: 2017.5.29
+ * by: leal
+ -->
+ 
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Where am I?</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="myLoc.css">
+	<script>
+		window.onload = getMyLocation;
+		
+		function getMyLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(displayLocation);	
+				
+			} else {
+				alert("Opps, no geolocation support");
+			}
+		}
+		
+		function displayLocation(position) {
+			var latitude = position.coords.latitude;
+			var longitude = position.coords.longitude;
+			
+			var div = document.getElementById("location");
+			div.innerHTML = "You are at Latitude: " + latitude + ", Longitude: " + longitude;
+		}
+	</script>
+</head>
+
+<body>
+	<div id="location">
+	  Your location comes here.
+	</div>
+</body>
+</html>
