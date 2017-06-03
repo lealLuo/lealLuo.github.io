@@ -19,8 +19,7 @@
 		<style type="text/css">
 	body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
 	</style>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGwSPRJS7VCXL6PJt0Z8uZo49D0aJvq5o"
-  type="text/javascript">
+	<script>
 		window.onload = getMyLocation;
 		
 		function getMyLocation() {
@@ -39,7 +38,7 @@
 			var div = document.getElementById("location");
 			div.innerHTML = "You are at Latitude: " + latitude + ", Longitude: " + longitude;
 			
-			showMap(position.coords);
+			//showMap(position.coords);
 		}
 		
 		function showMap(coords) {
