@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+	<title>Japanese practice</title>
+	<link rel="stylesheet" href="box.css">
+	<style>
+
+	#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:500px;
+    width:100px;
+    float:left;
+    padding:5px;	      
+	}
+	#section {
+    width:350px;
+    float:left;
+    padding:10px;	 	 
+	}
+
+	.survey-item-listbox li {
+	float: left;
+	margin-right: 22px;
+	position: relative;
+	width: 221px;
+	background: #FFF;
+	display: inline-block;
+}
+	</style>
+<script>
+
+function checkAnswer() {
+	answer = document.getElementById("veg_1").value;
+	if (answer == "にんじん")
+		alert("You are right!");
+	else alert("Sorry, Try again.")
+}
+
+function showAnswer() {
+	document.getElementById("ans_veg_1").innerHTML="にんじん（人参）";
+}
+
+function hideAnswer() {
+	document.getElementById("ans_veg_1").innerHTML="";
+}
+</script>	
+
+<script>
+function checkAnswer2() {
+	answer = document.getElementById("veg_2").value;
+	if (answer == "はくさい")
+		alert("You are right!");
+	else alert("Sorry, Try again.")
+}
+
+function showAnswer2() {
+	document.getElementById("ans_veg_2").innerHTML="はくさい（白菜）";
+}
+
+
+function hideAnswer2() {
+	document.getElementById("ans_veg_2").innerHTML="";
+}	
+</script>
+
+<script>
+
+function checkAnswer3() {
+	answer = document.getElementById("veg_3").value;
+	if (answer == "しょうが")
+		alert("You are right!");
+	else alert("Sorry, Try again.")
+}
+
+function showAnswer3() {
+	document.getElementById("ans_veg_3").innerHTML="しょうが（生姜）";
+}
+
+function hideAnswer3() {
+	document.getElementById("ans_veg_3").innerHTML="";
+}
+</script>
+
+</head>
+
+<body>
+
+
+<ul class="survey-item-listbox">
+                        <li>
+                            <img src="fruPic/carrot.jpg">
+                            <div class="survey-item-txtbox">                                
+                                <input id="veg_1" type="text" size="20">
+                                <br>
+								<button onclick="checkAnswer()">submit</button>
+								<br>
+								<button onclick="showAnswer()">Show answer</button>
+								<button onclick="hideAnswer()">Hide answer</button>
+								<p id="ans_veg_1" style="color:red;"></p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <img src="fruPic/hakusai.jpg">
+                            <div class="survey-item-txtbox">                             
+							<input id="veg_2" type="text" size="20">
+							<button onclick="checkAnswer2()">submit</button>
+							<br>
+							<button onclick="showAnswer2()">Show answer</button>
+							<button onclick="hideAnswer2()">Hide answer</button>
+							<p id="ans_veg_2" style="color:red;"></p>                        
+                            </div>
+                        </li>
+                        <li>
+                            <img src="fruPic/shouga.jpg">
+                            <div class="survey-item-txtbox">  
+							<input id="veg_3" type="text" size="20">
+							<button onclick="checkAnswer3()">submit</button>
+							<br>
+							<button onclick="showAnswer3()">Show answer</button>
+							<button onclick="hideAnswer3()">Hide answer</button>
+							<p id="ans_veg_3" style="color:red;"></p>                                                        
+                            </div>
+                        </li>
+                        <li><a href="/wjx/previewq.aspx?activity=467858">
+                            <img src="/images/pubsurvey/sitem04.jpg">
+                            <div class="survey-item-txtbox">                                
+                            </div>
+                        </a></li>
+                        
+                        <div class="clearfix"></div>
+                    </ul>
+</body>
+</html>
