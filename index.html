@@ -1,46 +1,27 @@
 <!doctype html>
 <html lang="en">
 <head>
-<title>Temperatures</title>
+<title>Leal Homepage</title>
 <meta charset = "utf-8">
-<script>
-function showTemps() {
-    alert("test");
-    var tempByHour = new Array();
-     tempByHour[0] = 59.2;
-     tempByHour[1] = 60.1;
-     tempByHour[2] = 63;
-     tempByHour[3] = 63;
-     tempByHour[4] = 65;
-     tempByHour[5] = 62;
-    for (var i = 0; i < tempByHour.length; i++) {
-        var theTemp = tempByHour[i];
-        var id = "temp" + i;
-        var li = document.getElementById(id);
-        if (i==0) {
-            li.innerHTML = "The temperature at noon was " + theTemp;
-        }   else {
-            li.innerHTML = "The temperature at " + i + "was " + theTemp;
-        }
-    }
-}
-window.onload = showTemps;
-</script>
+    <h1>Welcome to Leal's homepage.<h1> 
+<style>
+    #nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:500px;
+    width:100px;
+    float:left;
+    padding:5px;	      
+	}
+</style>    
 </head>
-<body>
-
-<?php
-printf("Why this print is like C?<B>Hello World</B>")
-?>
-
-<h1>Temperature</h1>
-<ul>
-    <li id = "temp0"></li>
-    <li id = "temp1"></li>
-    <li id = "temp2"></li>
-    <li id = "temp3"></li>
-    <li id = "temp4"></li>
-    <li id = "temp5"></li>
-</ul>
+        
+<body>    
+    <div id="nav">
+	language<a href="/language_game/jp_vegetable_index.html"><br>
+	tech<br>
+    culture<br>
+    </div>
+    <h2>Here you can find languages, techs, cultures.</h2>
 </body>
 </html>
