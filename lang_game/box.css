@@ -3,6 +3,17 @@
 
 /*----------°´Å¥----------*/
 
+/** link CSS **/
+a:link {   
+text-decoration: none;
+}
+		
+a:hover
+{
+background-color:gray;
+text-decoration: none;
+}
+
 .createbtn {
 	background: #ff941a;
 	border-radius: 12px;
