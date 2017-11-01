@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+	<title>Russian practice</title>
+	<style>
+	body {
+		margin: 20px;
+	}
+	#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:500px;
+    width:100px;
+    float:left;
+    padding:5px;	      
+	}
+	#section {
+    width:350px;
+    float:left;
+    padding:10px;	 	 
+	}
+	</style>
+</head>
+
+<body>
+<div id="nav">
+	1<br>
+	2<br>
+</div>
+<div id="section">
+<img src="fruPic/carrot.jpg">
+<br>
+<input id="veg_1" type="text" size="20">
+<button onclick="checkAnswer()">submit</button>
+<br>
+<button onclick="showAnswer()">Show answer</button>
+<button onclick="hideAnswer()">Hide answer</button>
+<p id="ans_veg_1" style="color:red;"></p>
+
+<br>
+<img src="fruPic/hakusai.jpg">
+<br>
+<input id="veg_2" type="text" size="20">
+<button onclick="checkAnswer2()">submit</button>
+<br>
+<button onclick="showAnswer2()">Show answer</button>
+<button onclick="hideAnswer2()">Hide answer</button>
+<p id="ans_veg_2" style="color:red;"></p>
+
+<br>
+<img src="fruPic/shouga.jpg">
+<br>
+<input id="veg_3" type="text" size="20">
+<button onclick="checkAnswer3()">submit</button>
+<br>
+<button onclick="showAnswer3()">Show answer</button>
+<button onclick="hideAnswer3()">Hide answer</button>
+<p id="ans_veg_3" style="color:red;"></p>
+
+<script>
+
+function checkAnswer() {
+	answer = document.getElementById("veg_1").value;
+	if (answer == "левёнок")
+		alert("You are right!");
+	else alert("Sorry, Try again.")
+}
+
+function showAnswer() {
+	document.getElementById("ans_veg_1").innerHTML="левёнок";
+}
+
+function hideAnswer() {
+	document.getElementById("ans_veg_1").innerHTML="";
+}
+</script>
+
+<script>
+function checkAnswer2() {
+	answer = document.getElementById("veg_2").value;
+	if (answer == "はくさい")
+		alert("You are right!");
+	else alert("Sorry, Try again.")
+}
+
+function showAnswer2() {
+	document.getElementById("ans_veg_2").innerHTML="はくさい（白菜）";
+}
+
+
+function hideAnswer2() {
+	document.getElementById("ans_veg_2").innerHTML="";
+}	
+</script>
+
+<script>
+
+function checkAnswer3() {
+	answer = document.getElementById("veg_3").value;
+	if (answer == "しょうが")
+		alert("You are right!");
+	else alert("Sorry, Try again.")
+}
+
+function showAnswer3() {
+	document.getElementById("ans_veg_3").innerHTML="しょうが（生姜）";
+}
+
+function hideAnswer3() {
+	document.getElementById("ans_veg_3").innerHTML="";
+}
+</script>
+</section>
+</body>
+</html>

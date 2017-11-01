@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+	<title>Russian practice</title>
+	<link rel="stylesheet" href="box.css">
+	<style>
+
+	#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:500px;
+    width:100px;
+    float:left;
+    padding:5px;	      
+	}
+	#section {
+    width:350px;
+    float:left;
+    padding:10px;	 	 
+	}
+
+	.survey-item-listbox li {
+	float: left;
+	margin-right: 22px;
+	position: relative;
+	width: 221px;
+	background: #FFF;
+	display: inline-block;
+}
+	</style>
+<script>
+
+function checkAnswer() {
+	answer = document.getElementById("veg_1").value;
+	if (answer == "лошадь")
+		alert("You are right!");
+	else {
+		alert("Sorry, Try again.");
+		document.getElementById("veg_1").value="";
+	}
+
+}
+
+function showAnswer() {
+	document.getElementById("ans_veg_1").innerHTML="лошадь";
+}
+
+function hideAnswer() {
+	document.getElementById("ans_veg_1").innerHTML="";
+}
+</script>	
+
+<script>
+function checkAnswer2() {
+	answer = document.getElementById("veg_2").value;
+	if (answer == "жеребёнок")
+		alert("You are right!");
+	else { 
+		alert("Sorry, Try again.");
+		document.getElementById("veg_2").value="";
+	}
+}
+
+function showAnswer2() {
+	document.getElementById("ans_veg_2").innerHTML="жеребёнок";
+}
+
+
+function hideAnswer2() {
+	document.getElementById("ans_veg_2").innerHTML="";
+}	
+</script>
+
+<script>
+
+function checkAnswer3() {
+	answer = document.getElementById("veg_3").value;
+	if (answer == "жеребята")
+		alert("You are right!");
+	else { 
+		alert("Sorry, Try again.");
+		document.getElementById("veg_3").value="";
+	}
+}
+
+function showAnswer3() {
+	document.getElementById("ans_veg_3").innerHTML="жеребята";
+}
+
+function hideAnswer3() {
+	document.getElementById("ans_veg_3").innerHTML="";
+}
+</script>
+
+<script>
+
+function checkAnswer4() {
+	answer = document.getElementById("veg_4").value;
+	if (answer == "れんこん")
+		alert("You are right!");
+	else  { 
+		alert("Sorry, Try again.");
+		document.getElementById("veg_4").value="";
+	}
+}
+
+function showAnswer4() {
+	document.getElementById("ans_veg_4").innerHTML="れんこん（蓮根）";
+}
+
+function hideAnswer4() {
+	document.getElementById("ans_veg_4").innerHTML="";
+}
+</script>
+</head>
+
+<body>
+
+
+<ul class="survey-item-listbox">
+                        <li>
+                            <img src="aniPic/horse_1.png">
+                            <div class="survey-item-txtbox">                                
+                                <input id="veg_1" type="text" size="20">
+                                <br>
+								<button onclick="checkAnswer()">submit</button>
+								<br>
+								<button onclick="showAnswer()">Show answer</button>
+								<button onclick="hideAnswer()">Hide answer</button>
+								<p id="ans_veg_1" style="color:red;"></p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <img src="aniPic/horse_2.png">
+                            <div class="survey-item-txtbox">                             
+							<input id="veg_2" type="text" size="20">
+							<button onclick="checkAnswer2()">submit</button>
+							<br>
+							<button onclick="showAnswer2()">Show answer</button>
+							<button onclick="hideAnswer2()">Hide answer</button>
+							<p id="ans_veg_2" style="color:red;"></p>                        
+                            </div>
+                        </li>
+                        <li>
+                            <img src="aniPic/horse_3.png">
+                            <div class="survey-item-txtbox">  
+							<input id="veg_3" type="text" size="20">
+							<button onclick="checkAnswer3()">submit</button>
+							<br>
+							<button onclick="showAnswer3()">Show answer</button>
+							<button onclick="hideAnswer3()">Hide answer</button>
+							<p id="ans_veg_3" style="color:red;"></p>                                                        
+                            </div>
+                        </li>
+                        
+                        
+                        <div class="clearfix"></div>
+                    </ul>
+<br>
+<a href="jp_vegetable_v1-4.html"><< Last page</a>  
+<br>
+<a href="ru_animal_v1-6.html">Next page >></a>                    
+</body>
+</html>
