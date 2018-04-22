@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Markdown Notebook</title>
+		<script type="text/javascript" src="../public/showdown-master/dist/showdown.min.js"></script>
+		<script>window.addEventListener("load", function(event)
+		{
+		allowTab(document.querySelector("textarea"));
+		});
+		</script>
+		
+		<style>			
+		.right {
+			position: absolute;
+			top: 50px;
+			right: 50px;
+			}
+		
+
+	</head>
+
+		<style>
+		
+			blockquote {
+			border-left:#eee solid 5px;
+			padding-left:20px;
+			}
+		
+			ul li {
+			line-height: 20px;
+			}
+
+		
+			code {
+			color:#D34B62;
+			background: #F6F6F6;
+		}
+		</style>	
+	<body>
+	<h2>Try this Markdown editor</h2>
+	<div>
+		<div id="editior" class="left">
+		<textarea id="oriContent" style="height:400px;width:600px;" onkeyup="convert()"></textarea>
+		</div>
+		
+	
+		<div id="result" class="right" style="height:400px;width:600px;"></div>
+	</div>
+
+	
+	<script type="text/javascript">
+	function convert(){
+		var text = document.getElementById("oriContent").value;
+		var converter = new showdown.Converter();
+		var html = converter.makeHtml(text);
+		document.getElementById("result").innerHTML = html;
+	}
+	
+	function allowTab(input)
+{
+    input.addEventListener("keydown", function(event)
+    {
+        if(event.keyCode == 9)
+        {
+            event.preventDefault();
+
+            var input = event.target;
+
+            var str = input.value;
+            var _selectionStart = input.selectionStart;
+            var _selectionEnd = input.selectionEnd;
+
+            str = str.substring(0, _selectionStart) + "\t" + str.substring(_selectionEnd, str.length);
+            _selectionStart++;
+
+            input.value = str;
+            input.selectionStart = _selectionStart;
+            input.selectionEnd = _selectionStart;
+        }
+    });
+}
+	</script>
+	</body>
+
+</html>
