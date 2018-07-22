@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<title>Writeup Basic</title>
+</head>
+
+<body>
+<h2>Basic1: Source</h2>
+<h3>Requirement:</h3>
+<p>You are given a box to type into the password.
+
+<h3>Analysis:</h3>
+<p>You can try some simple passwords if you have no ideas. You can check the top 10 passwords in your country or in the world, and try them one by one. 
+<br>Here, this level says it's an idiot test, so it may hide password somewhere. Where it can be? One place may be the source code.</p>
+
+<h3>Solution:</h3>
+<p>I use firefox. You can right click and check the source of the page, you can scan the source code, you will find the comments show the password.
+Or you can use developer tool(Ctrl + F12), and select element from the page, then move your cursor to the password box, you can see the comment which shows the password is there. Type the password into the box, and submit it, then you are in.</p>
+
+<h3>Review:</h3>
+<p>Sometimes comments will include some useful information, it may not be the password like this, but it may be the login in page, admin information, or some function tips. 
+Another tip about checking the source code is to use the search function to search some sensitive word or path. You can also use regex to customize your search or do the automation search.
+Check the source code, use the search function, you may write your first web crawler.</p>
+</body>
+
+</html>
