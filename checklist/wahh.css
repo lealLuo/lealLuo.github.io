@@ -1,0 +1,40 @@
+#TopBanner {
+	background: #303030 url("wahh.png") no-repeat;
+}
+#TopBanner ul li a:hover {
+	background-color: #41C8F4;
+}
+#NavBar ul li a:hover {
+	color: #41C8F4;
+}
+h2 {
+	color: #075D79;
+}
+a:hover {
+	color: #41C8F4;
+}
+.GreyBox a:hover {
+	color: #075D79;
+}
+.GreyBox li ul {
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+.GreyBox li li {
+	margin-left: -20px;
+}
+input.IndentCheck {
+	margin-left: 30px;
+}
+ul.Flags {
+	margin: 0;
+	padding: 0;
+}
+ul.Flags li {
+	display: inline;
+	margin: 0 15px 0 0;
+	padding: 0;
+}
+ul.Flags img {
+	border: 1px black solid;
+}
